@@ -2,8 +2,9 @@ module Api::V1
   class SummaryController < ApplicationController
 
     def categories
+      @summary_categorie = Invoice.select(:category_id).select(Invoice.arel_table[:issued_at].as('date')).select(Invoice.arel_table[:price].sum.as("price")).select((Invoice.arel_table[:price] * Invoice.arel_table[:vat_rate]/100).sum.as('percent_vat_rate')).group(:category_id)
       respond_to do |format|
-          format.json { render json: @invoices, root: 'invoices' }
+          format.json { render json: @summary_categorie, root: 'summary', each_serializer: SummaryCategorieSerializer }
         end
     end
 
