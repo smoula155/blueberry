@@ -1,5 +1,6 @@
 module Api::V1
   class InvoicesController < ApplicationController
+
     def show
       @invoices = Invoice.preload(:client).preload(:category)
       respond_to do |format|

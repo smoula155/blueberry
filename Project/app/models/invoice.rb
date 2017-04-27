@@ -5,4 +5,5 @@ class Invoice < ActiveRecord::Base
   def price_with_vat
     self.price + self.price * self.vat_rate / 100
   end
+
 end

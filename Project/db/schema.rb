@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 20170427104731) do
     t.integer  "number",      limit: 8
     t.integer  "vat_rate"
     t.datetime "issued_at"
-    t.decimal  "price"
+    t.decimal  "price",                 precision: 10, scale: 0
     t.integer  "client_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "invoices", ["category_id"], name: "index_invoices_on_category_id"
-  add_index "invoices", ["client_id"], name: "index_invoices_on_client_id"
+  add_index "invoices", ["category_id"], name: "index_invoices_on_category_id", using: :btree
+  add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
 
 end

@@ -2,16 +2,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :invoices
-        namespace :invoices do
-          resources :summary do
+      resources :summary do
             collection do
               get :categories
               get :months
             end
-          end
-        end
       end
     end
+  end
     # The prior
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
